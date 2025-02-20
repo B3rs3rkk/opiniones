@@ -1,4 +1,4 @@
-import User from "../user/user.model.js";
+import User from "../usuarios/usuario.model.js";
 
 export const emailExist = async (email = "") =>{
     const exist = await User.findOne({email})

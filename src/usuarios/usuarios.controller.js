@@ -1,5 +1,5 @@
 import { hash } from "argon2";
-import User from "./user.model.js"
+import User from "./usuario.model.js";
 
 export const getUserById = async (req, res) =>{
     try{
@@ -26,6 +26,8 @@ export const getUserById = async (req, res) =>{
         })
     }
 }
+
+
 
 export const getUsers = async (req, res) => {
 try{
@@ -54,22 +56,22 @@ try{
 }
 
 export const deleteUser = async (req, res) => {
-    try {
+    try{
         const { uid } = req.params
         
         const user = await User.findByIdAndUpdate(uid, {status: false}, {new: true})
 
         return res.status(200).json({
             success: true,
-            message: "Usuario eliminado",
+            message: "Deleted user",
             user
         })
-    } catch (err) {
+    }catch(err){
         return res.status(500).json({
-        success: false,
-        message: "Error al eliminar el usuario",
-        error: err.message
-        }) 
+            success: false,
+            message: "Error al eliminar el usuario",
+            error: err.message
+        })
     }
 }
 

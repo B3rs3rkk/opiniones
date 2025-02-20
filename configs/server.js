@@ -6,7 +6,8 @@ import helmet from "helmet"
 import morgan from "morgan"
 import { dbConnection } from "./mongo.js"
 import authRoutes from "../src/auth/auth.routes.js"
-import userRoutes from "../src/usuarios/usuario.routes.js"
+import usuarioRoutes from "../src/usuarios/usuario.routes.js"
+import apiLimiter from "../src/middlewares/rate-limit-validator.js"
 
 
 
@@ -20,8 +21,9 @@ const middlewares = (app) => {
 }
 
 const routes = (app) =>{
-    app.use("/adoptionSystem/v1/auth", authRoutes)
-    app.use("/adoptionSystem/v1/user", userRoutes)
+    app.use("/opiniones/v1/auth", authRoutes)
+    app.use("/opiniones/v1/usuario", usuarioRoutes)
+   //app.use("/opinoines/v1/opiniones", opinionesRoutes)
 }
 
 const conectarDB = async() =>{
@@ -45,4 +47,6 @@ export const initServer = () =>{
         console.log(`server init failed: ${err}`)
     }
 }
+
+
 
